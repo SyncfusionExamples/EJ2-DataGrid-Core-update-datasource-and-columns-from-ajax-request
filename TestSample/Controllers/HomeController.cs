@@ -42,7 +42,6 @@ namespace TestSample.Controllers
 
             }
             return orderDetails;
-            //return PartialView("_DetailPartialView", orderDetails);
         }
     }
    
