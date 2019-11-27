@@ -1,2 +1,3 @@
 # EJ2-DataGrid-Core-update-datasource-and-columns-from-ajax-request
-Update grid data source and columns from data received in ajax success function.
+
+I253576 - This sample demonstrates on how to update the grid’s data source and columns using the dataSource and columns property with the data returned from ajax post request.
