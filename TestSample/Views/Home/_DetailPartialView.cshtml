@@ -1,0 +1,9 @@
+@model List<TestSample.Models.OrdersDetails>
+<ejs-grid id="Grids" dataSource="@Model" height="400" allowPaging="true" allowReordering="true">
+    <e-grid-columns>
+        <e-grid-column field="OrderID" headerText="Order ID" customAttributes="@(new { @id="OrderID" })" textAlign="Right" width="100"></e-grid-column>
+        <e-grid-column field="CustomerID" customAttributes="@(new { @id="CustomerID" })" headerText="Customer Name" width="100"></e-grid-column>
+        <e-grid-column field="Freight" customAttributes="@(new { @id="Freight" })" headerText="Freight" format="C2" width="120"></e-grid-column>
+        <e-grid-column field="ShipCountry" customAttributes="@(new { @id="ShipCountry" })" headerText="Ship Country" width="150"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>

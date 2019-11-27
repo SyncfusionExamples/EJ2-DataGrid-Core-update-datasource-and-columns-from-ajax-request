@@ -1,0 +1,38 @@
+@model TestSample.ViewModels.IndexViewModel
+<ejs-grid id="Grid1" dataSource="@Model.customers" showColumnChooser="true" toolbar="@(new List<string>() { "ColumnChooser" })"  allowPaging="true" allowReordering="true" rowSelected="rowSelected">
+    <e-grid-columns>
+        <e-grid-column type="checkbox" width="50"></e-grid-column>
+        <e-grid-column field="CustomerID" headerText="Customer Name" width="100"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
+
+<script>
+    
+    function rowSelected(args) {
+        var selectedCustomer = args.data["CustomerID"];
+        var data = { CustomerID: selectedCustomer };
+        var dataType = 'application/json; charset=utf-8';
+        var formData = new FormData();
+        formData.append('data', JSON.stringify(data));
+        $.ajax({
+            url: "/Home/GetCustomerData",
+            type: "POST",
+            dataType: "html",
+            contentType: dataType,
+            contentType: false,
+            processData: false,
+            data: formData,
+          success: function (result) {
+            var gridObj = document.getElementById('Grids').ej2_instances[0];
+            gridObj.dataSource = ej.data.DataUtil.parse.parseJson(result);
+            gridObj.columns = [];
+            var newCols = [{ "field": "OrderID", "headerText": "Order ID", "width": 100 }, { "field": "CustomerID", "headerText": "Customer ID", "width": 100 }, { "field": "CountVal", "headerText": "Count", "width": 100 }];
+            gridObj.columns = newCols;
+            gridObj.refreshColumns();
+            },
+            error: function (xhr, status, error) {
+                console.log("Error" + error + " " + xhr.status + " " + xhr.statusText);
+            }
+        });
+    }
+</script>
